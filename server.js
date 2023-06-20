@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = process.env.port || 8008;
 const routes = require('./routes');
 const db = require('./models/index');
 
 
 app.use(express.json());
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}))
 app.use('/api', routes);
 
 
