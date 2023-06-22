@@ -29,7 +29,7 @@ export const insert = async () => new Promise(async (resolve, reject) => {
                 address: item?.header?.address,
                 attributesId,
                 categoryCode: 'Cho thue can ho',
-                discription: JSON.stringify(item?.mainContent?.content),
+                description: JSON.stringify(item?.mainContent?.content),
                 userId,
                 overviewId,
                 imagesId,
@@ -43,7 +43,7 @@ export const insert = async () => new Promise(async (resolve, reject) => {
             });
             await db.Images.create({
                 id: imagesId,
-                image: JSON.stringify(item.images),
+                images: JSON.stringify(item.images),
             });
             await db.Label.create({
                 code: labelCode,
