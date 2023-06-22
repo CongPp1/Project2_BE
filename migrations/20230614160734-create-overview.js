@@ -15,7 +15,13 @@ module.exports = {
       area: {
         type: Sequelize.STRING
       },
+      type: {
+        type: Sequelize.STRING
+      },
       target: {
+        type: Sequelize.STRING
+      },
+      bonus: {
         type: Sequelize.STRING
       },
       created: {
@@ -24,9 +30,7 @@ module.exports = {
       expire: {
         type: Sequelize.DATE
       },
-      bonus: {
-        type: Sequelize.STRING
-      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

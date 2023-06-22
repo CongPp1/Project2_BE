@@ -14,6 +14,13 @@ export const insert = async () => new Promise(async (resolve, reject) => {
     try {
         dataBody.forEach(async (item) => {  
             let labelCode = generateCode(5);
+            let postId;
+            let attributesId;
+            let overviewId;
+            let imagesId;
+            let userId;
+            let created = new Date();
+            let expire = new Date();
             await db.Post.create({
                 id: postId,
                 title: item?.header?.title,
@@ -49,15 +56,15 @@ export const insert = async () => new Promise(async (resolve, reject) => {
                 target: item?.overview?.content.find((item) => item.name === 'Đối tượng thuê:')?.content,
                 type: item?.overview?.content.find((item) => item.name === 'Loại tin rao:')?.content,
                 bonus: item?.overview?.content.find((item) => item.name === 'Gói tin:')?.content,
-                created: item?.overview?.content.find((item) => item.name === 'Ngày đăng:')?.content,
-                expire: item?.overview?.content.find((item) => item.name === 'Ngày hết hạn:')?.content,
+                created,
+                expire
             });
             await db.User.create({
                 id: userId,
-                name: item?.overview?.content.find((item) => item.name === 'Liên hệ:')?.content,
+                name: item?.contact?.content.find((item) => item.name === 'Liên hệ:')?.content,
                 password: hashPassword('123456'),
-                phone: item?.overview?.content.find((item) => item.name === 'Điện thoại:')?.content,
-                zalo: item?.overview?.content.find((item) => item.name === 'Zalo')?.content,
+                phone: item?.contact?.content.find((item) => item.name === 'Điện thoại:')?.content,
+                zalo: item?.contact?.content.find((item) => item.name === 'Zalo')?.content,
             });
         })
         resolve('Insert done');
